@@ -1,0 +1,226 @@
+{#v1.3 230316:添加多种搜索框&导航栏#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 加载静态文件夹 app/static/ -->
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <style type="text/css">
+        .h3 {
+            /*            margin:0 auto*/
+        }
+
+        td {
+
+            /*            height:100px;*/
+
+            /*            width:50px;*/
+
+            text-align: center;
+
+            vertical-align: middle;
+
+        }
+
+        {#右对齐#}
+        div.d1 {
+            width: 70px;
+            height: 70px;
+            position: fixed;
+            float: right;
+            left: 50%;
+            top: 59%;
+            z-index: 999;
+            margin-left: 530px;
+            width: 300px;
+            float: left;
+            border: 3px solid black;
+            padding: 20px;
+            background-color: white;
+            font-size: 25px;
+        }
+
+        input {
+            height: 34px;
+        }
+
+    </style>
+</head>
+<body>
+
+{#<div class="d1"></div>#}
+{#悬浮窗下载#}
+<!-- <div class="d1"><span  class="glyphicon glyphicon-download-alt" aria-hidden="true" ></span></div> -->
+{#<center>#}
+{#    <div class="panel-heading"><h3>{{ title }}</h3></div>#}
+{#</center>#}
+<!-- 两种图片格式都可用 -->
+<!--    <img src="D:\github_goods\RT10005_1.jpg" width="150px" height="150px"> 
+    <img src="file://D:/github_goods/RT10005_1.jpg">  -->
+<!--加载静态文件夹图片 ok -->
+{#<!--     <img src="{% static 'img/RT10005_1.jpg'%}" width="150px" height="150px">#}
+{#<img src="/static/img/RT10005_1.jpg" width="150px" height="150px"> -->#}
+{#导航#}
+
+<nav class="navbar navbar-default ">
+    <div class="">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">{{ title }}</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+{#搜索框#}
+<div class="container-fluid">
+    <form method="get" action="/wait_ship_aliexpress_order/">
+        {% csrf_token %}
+        <div class="input-group">
+
+            <table >
+                <tr>
+                     <!--添加按钮 -->
+                    <td width="80px">
+                        <a class="btn btn-success " style="margin-left:-20px" href="/add/">添加</a>
+                    </td>
+                    <td>
+                       {# 搜索按钮#}
+                        <button class="btn btn-primary" type="submit">搜索</button>
+                    </td>
+                    {#搜索框:订单号 状态 标题 型号#}
+                    {#删除input的required属性(必须填入字符)#}
+                    <td><input type="text" class="form-control" placeholder="订单号" name="oid" ></td>
+                    <td><input type="text" class="form-control" placeholder="状态" name="status"></td>
+                    <td><input type="text" class="form-control" placeholder="标题" name="goods_title"></td>
+                    <td><input type="text" class="form-control" placeholder="型号" name="model"></td>
+                </tr>
+                <tr>
+
+                </tr>
+
+            </table>
+
+            {# <span class="input-group-btn">#}
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            {#          </span>#}
+            <!-- required 属性规定必需在提交表单之前填写输入字段。 -->
+            &nbsp;&nbsp;&nbsp;&nbsp;
+
+        </div><!-- /input-group -->
+    </form>
+</div>
+{#<div class="panel-body">#}
+{#    <div class="row">#}
+{#        <div class=" ">#}
+{##}
+{#        </div><!-- /.col-lg-6 -->#}
+{#    </div>#}
+{#    <!-- <p>...</p> -->#}
+{#</div>#}
+<!-- 展现 序号 原图1 搜图标题1-6 搜图图片1-6  -->
+{#表格#}
+<div class="container-fluid">
+    <table border="1" class="table table-bordered table-hover table-bordered table-hover">
+        <thead>
+        <tr>
+            <td>序号</td>
+            <!-- 居中center可起作用 -->
+            <td>订单号</td>
+            <td>状态</td>
+            <td text-align='center'>买家</td>
+            <td>付款时间</td>
+            <td>产品金额</td>
+            <td>运费</td>
+            <td>订单金额</td>
+            <td>商品标题</td>
+            <td>型号</td>
+            <td>备注</td>
+            <td>收货地址</td>
+            <td>收货人</td>
+            <td>国家</td>
+            <td>发货期限</td>
+            <td>发货时间</td>
+            <td>操作</td>
+            <!--  <td>原图图片2</td>
+             <td>原图图片3</td>
+             <td>原图图片4</td>
+             <td>原图图片5</td>
+             <td>原图图片6</td> -->
+
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for item in list %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <!-- <td>{{ item.title}}</td> -->
+                <!-- 原图 -->
+                <!-- 嵌套x -->
+                <!-- {#            <td><img src="/static/img/{{ item.pic1_loc_img }}" width="150px" height="150px"></td> #}
+{#           oid#} -->
+                <td>{{ item.oid }}</td>
+                <!--      <td>{{ item.pic2_loc }}</td>
+            <td>{{ item.pic3_loc }}</td>
+            <td>{{ item.pic4_loc }}</td>
+            <td>{{ item.pic5_loc }}</td>
+            <td>{{ item.pic6_loc }}</td> -->
+                {#  搜图标题#}
+                <td>{{ item.status }}</td>
+                <td>{{ item.buyer }}</td>
+                <td>{{ item.pay_time }}</td>
+                <td>{{ item.product_amount }}</td>
+                <td>{{ item.shipping_fee }}</td>
+                <td>{{ item.order_amount }}</td>
+                <td>{{ item.goods_title }}</td>
+                <td>{{ item.model }}</td>
+                <td>{{ item.tips }}</td>
+                <td>{{ item.address }}</td>
+                <td>{{ item.receiver }}</td>
+                <td>{{ item.country }}</td>
+                <td>{{ item.ship_limit }}</td>
+                <td>{{ item.ship_time }}</td>
+
+                <!-- 更新时间 -->
+                <td>{{ item.time|date:"Y-m-d H:i:s" }}</td>
+                {#操作按钮组:修改/删除#}
+
+                <td>
+                    {# 删除 (button的样式能用于a)#}
+                    <a class="btn btn-danger btn-xs" href="/delete/?id={{ item.id }}">删除</a>
+                    {#修改#}
+                    <a class="btn btn-primary btn-xs" href="/edit/?id={{ item.id }}">修改</a>
+
+                </td>
+                <!--       <td>{{ item.goods7_url }}</td>
+            <td>{{ item.goods8_url }}</td>
+            <td>{{ item.goods9_url }}</td>
+            <td>{{ item.goods10_url }}</td>
+   -->
+            </tr>
+        {% endfor %}
+
+
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

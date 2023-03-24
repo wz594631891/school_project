@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>谷歌搜图</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+</head>
+<body>
+   <div class="panel-heading">速卖通商品上架阿里巴巴记录</div>
+  <div class="panel-body">
+    <div class="row">
+   <div class="col-lg-6">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">搜索</button>
+      </span>
+      <input type="text" class="form-control" placeholder="输入文字">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div>
+    <p>...</p>
+  </div>
+
+<table border="1" class="table table-bordered table-hover table-bordered table-hover">
+    <thead>
+    <tr>
+        <td>#</td>
+        <td>【1】 100 PCS Size 7.5*2.4 Fuel Injector Rubber O Ring 21016 For Honda (产品属性:Color:100PCS) (数量:2 piece)   </td>
+        <td>年龄</td>
+        <td>性别</td>
+        <td>年纪</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for student in student_queryset %}
+        <tr>
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.age }}</td>
+            <td>{{ student.gender }}</td>
+            <td>{{ student.grade }}</td>
+        </tr>
+    {% endfor %}
+ 
+ 
+    </tbody>
+</table>
+</body>
+</html>

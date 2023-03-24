@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<!--注册页面注册完成转发另一页面并获取url参数0124 bilibilidjango 07HTML-案例-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{name}}注册</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <style>
+        label{font-weight:bold;}
+        /*hover 移到元素时显示某样式*/
+        label:hover{color:red}
+        /*after在后面/前面加入内容*/
+        .developer:after{content:'叶志豪'}
+        .contact:before{content:'联系人:'}
+        .dialog{
+            position:fixed;
+            border:solid 1px red;
+            right:0;
+            top:50%;
+            height:100px;
+            width:100px
+        }
+        /*<!--对话框在最顶层-->*/
+        .hello{
+            /*层级*/
+            border:1px solid;
+            z-index: 1000;
+            width:500px;
+            height:300px;
+            /*top:0;*/
+            /*bottom: 0;*/
+            left:0;
+            right:0;
+        }
+        .mask{
+            /*层级*/
+            z-index:1001;
+            /*填充*/
+            margin:0 auto;
+            /*top:0;*/
+            /*bottom: 0;*/
+            left:0;
+            right:0;
+            background-color:black;
+            opacity:0.7;
+
+        }
+         .container{
+          /*边距*/
+          padding:200px;
+
+         }
+    </style>
+</head>
+<body>
+<!--对话框在最顶层-->
+<!--框-->
+<!-- <div class="hello" >你好欢迎访问</div> -->
+<!--底部幕布-->
+<!-- <div class="mask"></div> -->
+<!--固定对话框-->
+<!-- <div class="dialog">联系我们</div> -->
+<!-- 表单 总表 标注 输入 0123 -->
+<!-- 后两个是边框 -->
+<div class="container panel panel-default" >
+  <!-- 边框 -->
+  <div class="panel-body"> 
+
+<form action='/register/' method='post' >
+  {% csrf_token %}
+<!--<form action='/post/reg' method='post' >-->
+  <!-- 用户名 -->
+  <div class="form-group">
+  <label for='user'>用户名:</label>
+  <input type="text" class="form-control" name="username" id='user'><span style='color:red'>{{error_msg}}</span>
+  <!-- <br> -->
+  </div>
+  <div class="form-group">
+  <!-- 密码 -->
+  <label>密&nbsp;&nbsp;&nbsp;码:</label>
+  <input class="form-control" type="password" name="password">
+  </div>
+    <!-- <br> -->
+    <div class="form-group">
+    <label>手&nbsp;&nbsp;&nbsp;机:</label>
+  <input class="form-control" type="text" name="tel">
+    <!-- <br> -->
+    </div>
+    <div class="form-group">
+    <label>公&nbsp;&nbsp;&nbsp;司:</label>
+  <input class="form-control" type="text" name="company">
+    <!-- <br> -->
+    </div>
+     <div class="form-group">
+    <label>邮&nbsp;&nbsp;&nbsp;箱:</label>
+  <input class="form-control" type="text" name="mail">
+    <!-- <br> -->
+    </div>
+    <div class="form-group">
+    <label>省&nbsp;&nbsp;&nbsp;份:</label>
+    <select  class="form-control" name="province" id="province" >
+        <option value="浙江">浙江</option>
+        <option value="江苏">江苏</option>
+        <option value="澳门">澳门</option>
+        <option value="重庆">重庆</option>
+        <option value="四川">四川</option>
+        <option value="云南">云南</option>
+        <option value="西藏">西藏</option>
+        <option value="陕西">陕西</option>
+        <option value="甘肃">甘肃</option>
+        <option value="青海">青海</option>
+        <option value="宁夏">宁夏</option>
+        <option value="新疆">新疆</option>
+        <option value="福建">福建</option>
+        <option value="山东">山东</option>
+        <option value="台湾">台湾</option>
+        <option value="河南">河南</option>
+        <option value="湖北">湖北</option>
+        <option value="湖南">湖南</option>
+        <option value="广东">广东</option>
+        <option value="广西">广西</option>
+        <option value="海南">海南</option>
+        <option value="香港">香港</option>
+        <option value="北京市">北京市</option>
+        <option value="天津市">天津市</option>
+        <option value="河北">河北</option>
+        <option value="山西">山西</option>
+        <option value="内蒙古">内蒙古</option>
+        <option value="上海市">上海市</option>
+        <option value="安徽">安徽</option>
+        <option value="江西">江西</option>
+        <option value="辽宁">辽宁</option>
+        <option value="吉林">吉林</option>
+        <option value="黑龙江">黑龙江</option>
+    </select>
+    </div>
+    <!-- <br> -->
+    <div class="form-group">
+    <label>地&nbsp;&nbsp;&nbsp;址:</label>
+  <input class="form-control" type="text" name="address">
+</div>
+  <!-- 上传文件 -->
+    <!--验证码-->
+  <!--<p>-->
+  <!--<label for="" >头像</label>-->
+  <!--<input type="file" name="file">-->
+  <!--</p>-->
+  <!-- 单选框 -->
+    <br>
+  <label>性别</label>
+    <!-- <br> -->
+    <div class="radio">
+
+  <label>
+  <input type="radio" name="gender" value='male'>
+  男
+  </label>
+</div>
+
+<div class="radio">
+
+  <label>
+  <input type="radio" name="gender" value="female">
+  女
+  </label>
+</div>
+
+  <!-- <br> -->
+  <!--&lt;!&ndash; 多选框 &ndash;&gt;-->
+  
+  <label>爱好</label>
+    <br>
+
+  <labe>python</labe>
+  <input type="checkbox" name="hobby" value="py">
+  <labe>前端</labe>
+  <input type="checkbox" name="hobby" value="frontend">
+  <labe>篮球</labe>
+  <input type="checkbox" name="hobby" value="basketball">
+    <labe>唱歌</labe>
+  <input type="checkbox" name="hobby" value="sing">
+    <labe>rap</labe>
+  <input type="checkbox" name="hobby" value="rap">
+  <br>
+  <!-- 文本框 自我介绍 -->
+  <label>简介</label>
+    <br>
+  <textarea  class="form-control" name="introduce" id="" cols="30" rows="3"></textarea>
+  <!-- 提交 -->
+  <br>
+  <input class="btn btn-primary" type="submit" value='提交'>
+
+  <!--<br>-->
+   <!---->
+
+  <!--<input type="reset" value='重置'>-->
+  <!--&lt;!&ndash; 图片提交 &ndash;&gt;-->
+  <!---->
+  <!--<input type="image" src=''>-->
+  <!---->
+  <!---->
+  <!--&lt;!&ndash; 隐藏表单 &ndash;&gt;-->
+  <!--<input type="hidden" value='01' name='hid'>-->
+</form>
+</div>
+  </div>
+
+<span class="developer">开发者:</span>
+<div class="contact">叶志豪</div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--注册页面注册完成转发另一页面并获取url参数0124 bilibilidjango 07HTML-案例-->
+{#v1.1#}
+{#1.1 0303删除了多余元素添加了登陆框,#}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{name}}登录</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <style>
+
+
+        label{font-weight:bold;}
+        /*hover 移到元素时显示某样式*/
+        label:hover{color:red}
+        /*after在后面/前面加入内容*/
+        .developer:after{content:'叶志豪'}
+        .contact:before{content:'联系人:'}
+        .dialog{
+            position:fixed;
+            border:solid 1px red;
+            right:0;
+            top:50%;
+            height:100px;
+            width:100px
+        }
+        /*<!--对话框在最顶层-->*/
+        .hello{
+            /*层级*/
+            border:1px solid;
+            z-index: 1000;
+            width:500px;
+            height:300px;
+            /*top:0;*/
+            /*bottom: 0;*/
+            left:0;
+            right:0;
+        }
+        .mask{
+            /*层级*/
+            z-index:1001;
+            /*填充*/
+            margin:0 auto;
+            /*top:0;*/
+            /*bottom: 0;*/
+            left:0;
+            right:0;
+            background-color:black;
+            opacity:0.7;
+
+        }
+         .container{
+          /*边距*/
+          {#padding:400px;#}
+            {#padding-left: 0px;#}
+            {# padding-right: 0px;#}
+         }
+        .form-control{
+            {#width:300px;#}
+            ;
+        }
+        {#https://blog.csdn.net/qq_41604569/article/details/123975735#}
+          .loginForm {
+            /*边框高度*/
+            height: 350px;
+            /*边框宽度*/
+            width: 500px;
+            /*边框颜色*/
+            border: #4d4d4d solid 1px;
+            /*边框圆角*/
+            border-radius: 4px;
+            /*阴影 水平方向，竖直方向，模糊距离*/
+            box-shadow: 5px 5px 5px #4d4d4d;
+            /*上边界距离*/
+            margin-top: 300px;
+            /*左边界距离：自动*/
+            margin-left: auto;
+            /*右边界距离：自动*/
+            margin-right: auto;
+            /*用户名、密码间距*/
+            padding: 20px 40px;
+        }
+
+        /*将用户登录置于中间*/
+        .loginForm h2 {
+            text-align: center;
+        }
+
+        /*修改button属性*/
+        .button {
+            text-align: center;
+            vertical-align: middle;
+           margin-left: 170px;
+        }
+
+    </style>
+</head>
+<body>
+<!--对话框在最顶层-->
+<!--框-->
+<!-- <div class="hello" >你好欢迎访问</div> -->
+<!--底部幕布-->
+<!-- <div class="mask"></div> -->
+<!--固定对话框-->
+<!-- <div class="dialog">联系我们</div> -->
+<!-- 表单 总表 标注 输入 0123 -->
+<!-- 后两个是边框 -->
+{#<div class="container panel panel-default"  >#}
+  <!-- 边框 -->
+{#  <div class="panel-body">#}
+<div class="loginForm">
+     <h2>用户登录</h2>
+<form action='/login/' method='post' >
+  {% csrf_token %}
+<!--<form action='/post/reg' method='post' >-->
+  <!-- 用户名 -->
+  <div class="form-group" >
+  <label for='user'>用户名:</label>
+  <input type="text" class="form-control" name="username" id='user'><span style='color:red'>{{error_msg}}</span>
+  <!-- <br> -->
+  </div>
+  <div class="form-group">
+  <!-- 密码 -->
+  <label>密&nbsp;&nbsp;&nbsp;码:</label>
+  <input class="form-control" type="password" name="password">
+
+
+
+  <!-- 提交 -->
+  <br>
+  <input class="btn btn-primary button" type="submit" value='提交'  >
+</div>
+  <!--<br>-->
+   <!---->
+
+  <!--<input type="reset" value='重置'>-->
+  <!--&lt;!&ndash; 图片提交 &ndash;&gt;-->
+  <!---->
+  <!--<input type="image" src=''>-->
+  <!---->
+  <!---->
+  <!--&lt;!&ndash; 隐藏表单 &ndash;&gt;-->
+  <!--<input type="hidden" value='01' name='hid'>-->
+</form>
+{#</div>#}
+  </div>
+
+<span class="developer">开发者:</span>
+<div class="contact">叶志豪</div>
+</body>
+</html>

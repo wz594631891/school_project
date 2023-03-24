@@ -1,0 +1,139 @@
+update wk.google_search_picture set goods1_url="https://www.walmart.com/ip/4-Pcs-Fuel-Injectors-Nozzle-G609-13-250-842-12112-Fit-for-Mazda-B2600-MPV-1991-1994/1357608883?wmlspartner=wlpa&selectedSellerId=101089058" ,goods1_pic_url="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQHFz1q8K8vijUy-RGC7MC6_mUdv2BxG_v2we_ROZT2h_Olgkye", goods1_title="" where id=1  ;
+  create table if not exists wk.google_search_picture(
+    id int ,   
+    title text,
+    #图片url
+    pic1_url text,
+    pic2_url text,
+    pic3_url text,
+    pic4_url text,
+    pic5_url text,
+    pic6_url text,
+    #图片位置
+    pic1_loc text,
+    pic2_loc text,
+    pic3_loc text,
+    pic4_loc text,
+    pic5_loc text,
+    pic6_loc text,
+    #搜图查到的图url
+    goods1_pic_url text,
+    goods2_pic_url text,
+    goods3_pic_url text,
+    goods4_pic_url text,
+    goods5_pic_url text,
+    goods6_pic_url text,
+    goods7_pic_url text,
+    goods8_pic_url text,
+    goods9_pic_url text,
+    goods10_pic_url text,
+   	#找到的10个产品url
+    goods1_url text,
+    goods2_url text,
+    goods3_url text,
+    goods4_url text,
+    goods5_url text,
+    goods6_url text,
+    goods7_url text,
+    goods8_url text,
+    goods9_url text,
+    goods10_url text,
+  	#查到的标题
+  	goods1_title text,
+    goods2_title text,
+    goods3_title text,
+    goods4_title text,
+    goods5_title text,
+    goods6_title text,
+    goods7_title text,
+    goods8_title text,
+    goods9_title text,
+    goods10_title text,
+		search_picture text,
+		pic1_loc_img text,
+    time timestamp,
+    create_time datetime
+	)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+desc aliexpress_goods
+#添加字段
+alter table wk.google_search_picture add search_picture text;
+alter table wk.google_search_picture add search_picture text;
+alter table school.web_google_search_picture add create_time datetime;
+#删除字段
+alter table wk.google_search_picture drop search_pictur ;
+#修改字符集
+ALTER TABLE school.web_google_search_picture DEFAULT CHARACTER SET utf8mb4;
+ALTER TABLE school.web_google_search_picture DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
+#建表
+create table if not exists school.web_google_search_picture(
+    id int ,   
+    title text,
+    #图片url
+    pic1_url text,
+    pic2_url text,
+    pic3_url text,
+    pic4_url text,
+    pic5_url text,
+    pic6_url text,
+    #图片位置
+    pic1_loc text,
+    pic2_loc text,
+    pic3_loc text,
+    pic4_loc text,
+    pic5_loc text,
+    pic6_loc text,
+    #搜图查到的图url
+    goods1_pic_url text,
+    goods2_pic_url text,
+    goods3_pic_url text,
+    goods4_pic_url text,
+    goods5_pic_url text,
+    goods6_pic_url text,
+    goods7_pic_url text,
+    goods8_pic_url text,
+    goods9_pic_url text,
+    goods10_pic_url text,
+   	#找到的10个产品url
+    goods1_url text,
+    goods2_url text,
+    goods3_url text,
+    goods4_url text,
+    goods5_url text,
+    goods6_url text,
+    goods7_url text,
+    goods8_url text,
+    goods9_url text,
+    goods10_url text,
+  	#查到的标题
+  	goods1_title text,
+    goods2_title text,
+    goods3_title text,
+    goods4_title text,
+    goods5_title text,
+    goods6_title text,
+    goods7_title text,
+    goods8_title text,
+    goods9_title text,
+    goods10_title text,
+		search_picture text,
+		pic1_loc_img text,
+    time timestamp,
+    create_time datetime
+	)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+#复制字段(显示标签
+alter table school.web_google_search_picture add pic1_loc_img text;
+update school.web_google_search_picture set pic1_loc_img=pic1_loc;
+#修改整列
+update school.web_google_search_picture set pic1_loc_img=REPLACE(pic1_loc_img,'D:\\','D:\\\\');
+update school.web_google_search_picture set pic1_loc_img=REPLACE(pic1_loc_img,'D:\\','D:\\\\');
+update school.web_google_search_picture set pic1_loc_img=REPLACE(pic1_loc_img,'D:\\github_goods\\','');
+#查看字符集
+show variables like '%character%';
+show variables like 'collation%';
+#创建库指定编码
+#删除字段
+alter table school.web_google_search_picture drop pic1_loc_img ;
+
+CREATE DATABASE school CHARACTER SET utf8 COLLATE utf8_general_ci;
+#删除整列
+update school.web_google_search_picture set pic1_loc_img=pic1_loc

@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <!-- 加载静态文件夹 app/static/ -->
+        {% load static %}
+    <meta charset="UTF-8">
+    <title>谷歌搜图</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+{#    <style type="text/css">#}
+{#        .h3{ #}
+{#/*            margin:0 auto*/#}
+{#        }#}
+{#        td{#}
+{##}
+{#/*            height:100px;*/#}
+{##}
+{#/*            width:50px;*/#}
+{##}
+{#            text-align:center;#}
+{##}
+{#            vertical-align:middle;#}
+{##}
+{#        }#}
+        {#右对齐#}
+{#        div.d1{#}
+{#            width:70px;#}
+{#            height:70px;#}
+{#            position: fixed;#}
+{#            float: right;#}
+{#            left:50%;#}
+{#            top:59%;#}
+{#            z-index: 999;#}
+{#            margin-left:530px;#}
+            {#width:300px;#}
+            {#float:left;#}
+{#            border:3px solid black;#}
+{#            padding:20px;#}
+{#            background-color: white;#}
+{#            font-size:25px;#}
+{#      }#}
+{##}
+{#    </style>#}
+</head>
+<body>
+{#<div class="d1"></div>#}
+{#悬浮窗下载#}
+<!-- <div class="d1"><span  class="glyphicon glyphicon-download-alt" aria-hidden="true" ></span></div> -->
+   <center><div class="panel-heading"><h3>谷歌搜图</h3></div></center>
+   <!-- 两种图片格式都可用 -->
+<!--    <img src="D:\github_goods\RT10005_1.jpg" width="150px" height="150px"> 
+    <img src="file://D:/github_goods/RT10005_1.jpg">  -->
+    <!--加载静态文件夹图片 ok -->
+{#<!--     <img src="{% static 'img/RT10005_1.jpg'%}" width="150px" height="150px">#}
+    <img src="/static/img/RT10005_1.jpg" width="150px" height="150px"> -->
+  <div class="panel-body">
+    <div class="row">
+   <div class="col-lg-6">
+         <form method="post" action="/google_search_picture/">
+              {% csrf_token %}
+    <div class="input-group">
+
+
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">搜索</button>
+          </span>
+          <!-- required 属性规定必需在提交表单之前填写输入字段。 -->
+          <input type="text" class="form-control" placeholder="输入文字" name="search_string" required>
+
+    </div><!-- /input-group -->
+        </form>
+  </div><!-- /.col-lg-6 -->
+</div>
+    <!-- <p>...</p> -->
+  </div>
+<!-- 展现 序号 原图1 搜图标题1-6 搜图图片1-6  -->
+
+<table border="1" class="table table-bordered table-hover table-bordered table-hover">
+    
+    <thead>
+    <tr>
+         <td>序号</td> 
+        <!-- 居中center可起作用 -->
+        <td><center>原图</center></td>
+       <td>搜图标题1</td>
+        <td text-align='center'>搜图标题2</td>
+        <td>搜图标题3</td>
+        <td>搜图标题4</td>
+        <td>搜图标题5</td>
+        <td>搜图标题6</td>
+        <td>搜图图片1</td>
+        <td>搜图图片2</td>
+        <td>搜图图片3</td>
+        <td>搜图图片4</td>
+        <td>搜图图片5</td>
+        <td>搜图图片6</td>
+        <td>更新时间</td>
+       <!--  <td>原图图片2</td>
+        <td>原图图片3</td>
+        <td>原图图片4</td>
+        <td>原图图片5</td>
+        <td>原图图片6</td> -->
+        
+    </tr>
+    </thead>
+    <tbody>
+      
+    {% for item in list %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <!-- <td>{{ item.title}}</td> -->
+            <!-- 原图 -->
+            <!-- 嵌套x -->
+            <td><img src="/static/img/{{ item.pic1_loc_img }}" width="150px" height="150px"></td> 
+       <!--      <td>{{ item.pic2_loc }}</td>
+            <td>{{ item.pic3_loc }}</td>
+            <td>{{ item.pic4_loc }}</td>
+            <td>{{ item.pic5_loc }}</td>
+            <td>{{ item.pic6_loc }}</td> -->
+            {#  搜图标题#}
+            <td>{{ item.goods1_title }}</td>
+            <td>{{ item.goods2_title }}</td>
+            <td>{{ item.goods3_title }}</td>
+            <td>{{ item.goods4_title }}</td>
+            <td>{{ item.goods5_title }}</td>
+            <td>{{ item.goods6_title }}</td>
+           <!--  <td>{{ item.goods7_title }}</td>
+            <td>{{ item.goods8_title }}</td>
+            <td>{{ item.goods9_title }}</td>
+            <td>{{ item.goods10_title }}</td> -->
+            {#  搜图图片#}
+            <td><img src="{{ item.goods1_pic_url }}" width="150px" height="150px"></td>
+            <td><img src="{{ item.goods2_pic_url }}" width="150px" height="150px"></td>
+            <td><img src="{{ item.goods3_pic_url }}" width="150px" height="150px"></td>
+            <td><img src="{{ item.goods4_pic_url }}" width="150px" height="150px"></td>
+            <td><img src="{{ item.goods5_pic_url }}" width="150px" height="150px"></td>
+            <td><img src="{{ item.goods6_pic_url }}" width="150px" height="150px"></td>
+            <!-- 更新时间 -->
+            <td>{{ item.time|date:"Y-m-d H:i:s"  }}</td>
+      <!--       <td>{{ item.goods7_url }}</td>
+            <td>{{ item.goods8_url }}</td>
+            <td>{{ item.goods9_url }}</td>
+            <td>{{ item.goods10_url }}</td>
+   -->
+        </tr>
+    {% endfor %}
+ 
+ 
+    </tbody>
+</table>
+
+</body>
+</html>
